@@ -17,8 +17,15 @@ This utility script allows you to execute a Python script line by line, catch an
 
 ### Basic Usage
 
+You can download tracor from [PyPI](https://pypi.org/project/tracor/):
 ```sh
-python main.py <script_path>
+pip install tracor
+```
+
+Then, you can run it with:
+```
+```sh
+tracor path/to/your_script.py [options]
 ```
 
 ### Usage With Flags
@@ -33,6 +40,12 @@ python main.py <script_path>
 * `--type-color <color>`: Color for error type in error messages (default: CYAN).
 * `--message-color <color>`: Color for error message in error messages (default: MAGENTA).
 * `--traceback-color <color>`: Color for traceback in error messages (default: WHITE).
+
+
+Example - 
+```sh
+tracor example_script.py --output-file custom_error_report.md --log-level DEBUG --max-errors 5 --show-traceback --execution-color GREEN --error-color RED --code-color YELLOW --type-color CYAN --message-color MAGENTA --traceback-color WHITE
+```
 
 ## Output
 ### Terminal Output
