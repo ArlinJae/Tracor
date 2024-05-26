@@ -16,20 +16,24 @@ logger = logging.getLogger(__name__)
 error_details = []
 error_stats = defaultdict(int)
 
+
 @contextmanager
 def execute_line_by_line_context():
     global_vars = {}
     local_vars = {}
     yield global_vars, local_vars
 
+
 def log_execution(line_number, code_block, colors):
     logger.info(f"{colors['execution']}Executed line {line_number}: {code_block.strip()}")
+
 
 def log_error(line_number, code_block, e, tb, show_traceback, colors):
     error_type = type(e).__name__
     error_message = str(e)
     logger.error(f"{colors['error']}Error on line {line_number}: {colors['code']}{code_block.strip()}")
-    logger.error(f"{colors['error']}Type: {colors['type']}{error_type}, {colors['error']}Message: {colors['message']}{error_message}")
+    logger.error(
+        f"{colors['error']}Type: {colors['type']}{error_type}, {colors['error']}Message: {colors['message']}{error_message}")
     if show_traceback:
         logger.error(f"{colors['error']}Traceback:\n{colors['traceback']}{tb}")
 
@@ -44,6 +48,7 @@ def log_error(line_number, code_block, e, tb, show_traceback, colors):
 
     # Update error statistics
     error_stats[error_type] += 1
+
 
 def execute_line_by_line(file_path, stop_on_error, max_errors, show_traceback, colors):
     with open(file_path, 'r') as file:
@@ -96,6 +101,7 @@ def execute_line_by_line(file_path, stop_on_error, max_errors, show_traceback, c
     sys.stdout.write("\n")
     logger.info(f"{Fore.BLUE}\nExecution completed with {error_count} errors.\n")
 
+
 def generate_markdown_report(file_path, output_file, show_traceback):
     if not output_file:
         output_file = file_path.replace('.py', '_error_report.md')
@@ -110,8 +116,11 @@ def generate_markdown_report(file_path, output_file, show_traceback):
         for error_type, count in error_stats.items():
             report_file.write(f"| {error_type.ljust(18)} | {str(count).ljust(5)} |\n")
         report_file.write("\n## Details\n\n")
-        report_file.write("| Line Number | Code                                    | Error Type       | Error Message                           | Traceback          |\n")
-        report_file.write("|-------------|-----------------------------------------|------------------|-----------------------------------------|--------------------|\n")
+        report_file.write(
+            "| Line Number | Code                                    | Error Type       | Error Message               "
+            "            | Traceback          |\n")
+        report_file.write(
+            "|-------------|-----------------------------------------|------------------|-----------------------------------------|--------------------|\n")
         for error in error_details:
             line = f"| {str(error['line_number']).ljust(12)} " \
                    f"| `{error['code'][:40].ljust(40)}` " \
@@ -122,19 +131,22 @@ def generate_markdown_report(file_path, output_file, show_traceback):
 
     logger.info(f"{Fore.BLUE}Markdown report generated: {output_file}")
 
+
 def main():
     parser = argparse.ArgumentParser(description='Run a Python script line by line with error handling.')
     parser.add_argument('script_path', type=str, help='Path to the Python script to debug')
     parser.add_argument('--stop-on-error', action='store_true', help='Stop execution on the first error')
     parser.add_argument('--output-file', type=str, help='Specify the output markdown file for the error report')
-    parser.add_argument('--log-level', type=str, default='INFO', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], help='Set the logging level')
+    parser.add_argument('--log-level', type=str, default='INFO',
+                        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], help='Set the logging level')
     parser.add_argument('--max-errors', type=int, help='Limit the number of errors to report before stopping execution')
     parser.add_argument('--show-traceback', action='store_true', help='Include full traceback in the markdown report')
     parser.add_argument('--execution-color', type=str, default='GREEN', help='Color for executed lines')
     parser.add_argument('--error-color', type=str, default='RED', help='Color for error lines')
     parser.add_argument('--code-color', type=str, default='YELLOW', help='Color for code in error messages')
     parser.add_argument('--type-color', type=str, default='CYAN', help='Color for error type in error messages')
-    parser.add_argument('--message-color', type=str, default='MAGENTA', help='Color for error message in error messages')
+    parser.add_argument('--message-color', type=str, default='MAGENTA',
+                        help='Color for error message in error messages')
     parser.add_argument('--traceback-color', type=str, default='WHITE', help='Color for traceback in error messages')
     args = parser.parse_args()
 
@@ -153,6 +165,7 @@ def main():
 
     execute_line_by_line(args.script_path, args.stop_on_error, args.max_errors, args.show_traceback, colors)
     generate_markdown_report(args.script_path, args.output_file, args.show_traceback)
+
 
 if __name__ == "__main__":
     main()
