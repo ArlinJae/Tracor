@@ -18,10 +18,10 @@ This utility script allows you to execute a Python script line by line, catch an
 ### Basic Usage
 
 ```sh
-python debugger_utility.py <script_path>
+python main.py <script_path>
 ```
 
-### Advantage Usage With Flags
+### Usage With Flags
 * `--stop-on-error`: Stop execution on the first error.
 * `--output-file <file>`: Specify the output Markdown file for the error report.
 * `--log-level <level>`: Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL).
