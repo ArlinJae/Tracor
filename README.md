@@ -1,4 +1,6 @@
-# Clue Please
+# Tracor
+
+## 🚀 Debug Python Scripts Faster
 
 This utility script allows you to execute a Python script line by line, catch any errors that occur along the way, and provide essential debugging information with enhanced context. Additionally, it generates a well-formatted Markdown report highlighting the errors encountered during execution.
 
