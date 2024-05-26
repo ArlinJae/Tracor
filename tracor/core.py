@@ -122,7 +122,7 @@ def generate_markdown_report(file_path, output_file, show_traceback):
 
     logger.info(f"{Fore.BLUE}Markdown report generated: {output_file}")
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description='Run a Python script line by line with error handling.')
     parser.add_argument('script_path', type=str, help='Path to the Python script to debug')
     parser.add_argument('--stop-on-error', action='store_true', help='Stop execution on the first error')
@@ -153,3 +153,6 @@ if __name__ == "__main__":
 
     execute_line_by_line(args.script_path, args.stop_on_error, args.max_errors, args.show_traceback, colors)
     generate_markdown_report(args.script_path, args.output_file, args.show_traceback)
+
+if __name__ == "__main__":
+    main()
