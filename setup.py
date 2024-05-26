@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="tracor",
-    version="0.1.2",  # Ensure this is the updated version
+    version="0.1.3",  # Ensure this is the updated version
     packages=find_packages(),
     install_requires=[
         "colorama",
