@@ -13,7 +13,7 @@ setup(
         ],
     },
     author="Jae Arlin",
-    author_email="jairelan.2005@gmail.com",
+    author_email="arlin0jae@gmail.com",
     description="A tool for running Python scripts line by line with error handling and reporting.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
