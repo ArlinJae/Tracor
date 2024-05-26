@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="tracor",
-    version="0.1.2",  # Ensure this is the updated version
+    version="0.1.3",  # Ensure this is the updated version
     packages=find_packages(),
     install_requires=[
         "colorama",
@@ -13,7 +13,7 @@ setup(
         ],
     },
     author="Jae Arlin",
-    author_email="jairelan.2005@gmail.com",
+    author_email="arlin0jae@gmail.com",
     description="A tool for running Python scripts line by line with error handling and reporting.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
