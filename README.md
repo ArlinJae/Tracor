@@ -23,7 +23,6 @@ pip install tracor
 ```
 
 Then, you can run it with:
-```
 ```sh
 tracor path/to/your_script.py [options]
 ```
